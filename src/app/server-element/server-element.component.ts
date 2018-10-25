@@ -5,7 +5,12 @@ import {
   ViewEncapsulation, 
   OnChanges,
   SimpleChanges, 
-  DoCheck
+  DoCheck,
+  AfterContentInit,
+  AfterContentChecked,
+  AfterViewInit,
+  AfterViewChecked,
+  OnDestroy
 } from '@angular/core';
 
 @Component({
@@ -16,7 +21,15 @@ import {
   // using ViewEncapsulation.Native will use the shadow DOM default behavior
   encapsulation: ViewEncapsulation.Native
 })
-export class ServerElementComponent implements OnInit, OnChanges, DoCheck {
+export class ServerElementComponent implements 
+  OnInit, 
+  OnChanges, 
+  DoCheck, 
+  AfterContentInit, 
+  AfterContentChecked,
+  AfterViewInit,
+  AfterViewChecked,
+  OnDestroy {
   @Input('srvElement') element: { type: string, name: string, content: string };
   @Input() name: string;
 
@@ -35,5 +48,25 @@ export class ServerElementComponent implements OnInit, OnChanges, DoCheck {
 
   ngDoCheck() {
     console.log('ngDoCheck called');
+  }
+
+  ngAfterContentInit() {
+    console.log('ngAfterContentInit called');
+  }
+
+  ngAfterContentChecked() {
+    console.log('ngAfterContentChecked called');
+  }
+  
+  ngAfterViewInit() {
+    console.log('ngAfterViewInit called');
+  }
+
+  ngAfterViewChecked() {
+    console.log('ngAfterViewChecked called');
+  }
+
+  ngOnDestroy() {
+    console.log('ngOnDestroy called');
   }
 }
